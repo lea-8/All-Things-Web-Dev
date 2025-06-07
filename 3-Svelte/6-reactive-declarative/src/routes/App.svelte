@@ -21,7 +21,7 @@
 	
 	function increment() {
 		count ++;
-    // double = count * 2;
+    $: double = count * 2;
 
     // value lags behind, but don't get the explanation.
     console.log('double with lag:', double);
