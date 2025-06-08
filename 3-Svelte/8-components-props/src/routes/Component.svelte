@@ -1,10 +1,11 @@
 <!-- Child component -->
 <script>
-	export let name;
+	export let name = 'svelte is confusing';
+	export let email = 'bla@blah.com';
 </script>
 
 <div>
-	Component: {name}
+	Component: {name} - {email}
 </div>
 
 <!-- <div>
