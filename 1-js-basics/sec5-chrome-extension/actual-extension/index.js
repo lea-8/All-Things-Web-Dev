@@ -1,7 +1,14 @@
-let myLeads = []
+let myLeads = `["website"]`
+myLeads = JSON.parse(myLeads)
+myLeads.push("new")
+myLeads = JSON.stringify(myLeads)
+console.log(typeof myLeads)
+
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("list-el")
+
+// window.localStorage.setItem("it's", "ok.")
 
 inputBtn.addEventListener("click", function() {
     // console.log("Button clicked (via addEventListener)")
