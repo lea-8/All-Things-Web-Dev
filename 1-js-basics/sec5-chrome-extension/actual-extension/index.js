@@ -1,28 +1,23 @@
-let myLeads = `["website"]`
-myLeads = JSON.parse(myLeads)
-myLeads.push("new")
-myLeads = JSON.stringify(myLeads)
-console.log(typeof myLeads)
+let myLeads = []
+// myLeads = JSON.parse(myLeads)
+// myLeads.push("new")
+// myLeads = JSON.stringify(myLeads)
+// console.log(typeof myLeads)
 
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("list-el")
+const deleteBtn = document.getElementById("delete-btn")
 
-// window.localStorage.setItem("it's", "ok.")
+const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
+console.log(leadsFromLocalStorage)
 
-inputBtn.addEventListener("click", function() {
-    // console.log("Button clicked (via addEventListener)")
-    // console.log(inputEl.value)
-    myLeads.push(inputEl.value)
-    console.log("myLeads: ", myLeads)
+if (leadsFromLocalStorage) {
+    myLeads = leadsFromLocalStorage
+    renderLeads(myLeads)
+}
 
-    // clear the input field
-    inputEl.value = ""
-
-    renderLeads()
-})
-
-function renderLeads() {
+function renderLeads(leads) {
     // improving performance
     let listItems = ""
     for (let i = 0; i < myLeads.length; i++) {
@@ -39,3 +34,24 @@ function renderLeads() {
     }
     ulEl.innerHTML = listItems
 }
+
+deleteBtn.addEventListener("dblclick", function() {
+    localStorage.clear()
+    myLeads = []
+    renderLeads()
+})
+
+inputBtn.addEventListener("click", function() {
+    // console.log("Button clicked (via addEventListener)")
+    // console.log(inputEl.value)
+    myLeads.push(inputEl.value)
+    console.log("myLeads: ", myLeads)
+
+    // clear the input field
+    inputEl.value = ""
+
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    console.log( JSON.stringify(myLeads) )
+
+    renderLeads()
+})

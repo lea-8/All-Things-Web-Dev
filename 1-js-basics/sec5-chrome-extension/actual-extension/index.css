@@ -1,8 +1,8 @@
 body {
-    margin: 0;
-    padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    min-width: 400px;
+  margin: 0;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 400px;
 }
 
 /*
@@ -10,34 +10,38 @@ Style our app according to the provided design!
 green color -> #5f9341
 */
 
-
 input {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #5f9341;
-    margin-bottom: 4px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #5f9341;
+  margin-bottom: 4px;
 }
 
 button {
-    color: #ffff;
-    font-weight: bold;
-    background: #5f9341;
-    /* margin-top: 5px; */
-    padding: 10px 20px;
-    border: none;
+  color: #ffffff;
+  font-weight: bold;
+  background: #5f9341;
+  /* margin-top: 5px; */
+  padding: 10px 20px;
+  border: 1px solid #5f9341;
+}
+
+#delete-btn {
+  color: #5f9341;
+  background: #ffffff;
 }
 
 ul {
-    padding: 0px;
-    list-style: none;
-    margin-top: 20px;
+  padding: 0px;
+  list-style: none;
+  margin-top: 20px;
 }
 
 li {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 li a {  /* target anchor tags in li items.*/
-    color: #5f9341;
+  color: #5f9341;
 }
