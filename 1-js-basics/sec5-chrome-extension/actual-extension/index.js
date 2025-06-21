@@ -8,23 +8,39 @@ const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("list-el")
 const deleteBtn = document.getElementById("delete-btn")
+const tabBtn = document.getElementById("tab-btn")
 
 const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
 console.log(leadsFromLocalStorage)
 
 if (leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage
-    renderLeads(myLeads)
+    render(myLeads)
 }
 
-function renderLeads(leads) {
+tabBtn.addEventListener("click", function() {
+    // talk to Chrome API to get current tab
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        console.log(tabs)
+        // --- what 'tabs' var should look like.
+        // const tabs = [
+        //     {url: "https://github.com/lea-8"}
+        // ]
+
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+    })
+})
+
+function render(leads) {
     // improving performance
     let listItems = ""
-    for (let i = 0; i < myLeads.length; i++) {
+    for (let i = 0; i < leads.length; i++) {
         listItems += `
             <li>
-                <a href="${myLeads[i]}" target="_blank">
-                    ${myLeads[i]}
+                <a href="${leads[i]}" target="_blank">
+                    ${leads[i]}
                 </a>
             </li>
         `
@@ -38,7 +54,7 @@ function renderLeads(leads) {
 deleteBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     myLeads = []
-    renderLeads()
+    render(myLeads)
 })
 
 inputBtn.addEventListener("click", function() {
@@ -53,5 +69,5 @@ inputBtn.addEventListener("click", function() {
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
     console.log( JSON.stringify(myLeads) )
 
-    renderLeads()
+    render(myLeads)
 })
