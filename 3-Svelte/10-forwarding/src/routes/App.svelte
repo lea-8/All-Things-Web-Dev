@@ -9,7 +9,10 @@
 	}
 </script>
 
-<Parent on:componentButtonClick={onComponentButtonClick} />
+<Parent on:componentButtonClick={onComponentButtonClick} 
+	on:click={() => {
+		console.log("onClick in app.svelte")
+}} />
 
 <hr />
 Element:

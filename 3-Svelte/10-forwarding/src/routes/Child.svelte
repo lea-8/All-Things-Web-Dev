@@ -1,13 +1,14 @@
 <script>
 	import GrandChild from './GrandChild.svelte';
-    import { createEventDispatcher } from 'svelte';
+    // import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
+    // const dispatch = createEventDispatcher();
 
-    function onComponentButtonClick(event) {
-        // console.log('in child.svelte ', event.detail);
-        dispatch('componentButtonClick', event.detail);
-    }
+    // function onComponentButtonClick(event) {
+    //     // console.log('in child.svelte ', event.detail);
+    //     dispatch('componentButtonClick', event.detail);
+    // }
 </script>
 
-<GrandChild on:componentButtonClick={onComponentButtonClick} />
+<!-- <GrandChild on:componentButtonClick={onComponentButtonClick} /> -->
+<GrandChild on:componentButtonClick on:click />
