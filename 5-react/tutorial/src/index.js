@@ -2,6 +2,8 @@ import ReactDOM from "react-dom/client";
 
 import './index.css';
 
+// Book list used: https://www.nytimes.com/books/best-sellers/
+
 const BookList = () => {
   return <section className='booklist'>
     <Book/>

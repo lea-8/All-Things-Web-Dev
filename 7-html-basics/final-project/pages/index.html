@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Little Taco Shop</title>
-  <link rel="icon" href="../favicon.ico" />
-  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
   <h1 id="top">Welcome to The Little Taco Shop</h1>
@@ -14,17 +14,17 @@
       <li><a href="#about_LTS">About LTS</a></li>
       <li><a href="#our_menu">Our Menu</a></li>
       <li><a href="hours.html">Store Hours</a></li>
-      <li><a href="">Contact Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
     </ul>
   </nav>
   <figure>
     <img 
       src="../img/tacos_and_drink_400x267.png" 
       alt="Tacos and a drink with dips on table"
-    />
+    >
     <figcaption>Tacos and a Drink</figcaption>
   </figure>
-  <hr />
+  <hr>
 
   <h2 id="about_LTS">About <abbr title="Little Taco Shop">LTS</abbr></h2>
   <p>
@@ -42,22 +42,22 @@
       <em><a href="https://www.smithsonianmag.com/">Smithsonian Magazine</a></em>)
     </p>
   </details>
-  <hr />
+  <hr>
 
   <h2 id="our_menu">Our Menu</h2>
-  <p>
+
     <table>
       <caption>
         Our Tacos
       </caption>
       <thead>
-        <th>Tacos</th>
-        <th><abbr title="Quantity">Qty</abbr></th>
-        <th>Price</th>
+        <th scope="col">Tacos</th>
+        <th scope="col"><abbr title="Quantity">Qty</abbr></th>
+        <th scope="col">Price</th>
       </thead>
       <tbody>
         <tr>
-          <th rowspan="3">Crunchy</th>
+          <th scope="row" rowspan="3">Crunchy</th>
           <td>1</td>
           <td>$1.50</td>
         </tr>
@@ -70,7 +70,7 @@
           <td>$3.25</td>
         </tr>
         <tr>
-          <th rowspan="3">Soft</th>
+          <th scope="row" rowspan="3">Soft</th>
           <td>1</td>
           <td>$2.00</td>
         </tr>
@@ -89,11 +89,10 @@
         </tr>
       </tfoot>
     </table>
-  </p>
   <p>
     <a href="#top">Back to Top</a>
   </p>
-  <hr />
+  <hr>
 
   <footer>
     <p>
