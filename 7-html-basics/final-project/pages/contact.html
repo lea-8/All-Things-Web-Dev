@@ -12,7 +12,7 @@
 </head>
 <body>
   <header>
-    <h1 id="top">Contact Us</h1>
+    <h1>Contact Us</h1>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -30,46 +30,51 @@
     </figure>
   </header>
   
-  <article>
-    <h2>Our Contact Form</h2>
-    <form action="https://httpbin.org/get" method="get">
-      <fieldset>
-        <legend>Send Us A Message</legend>
-        <p>
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" placeholder="your name" 
-            autocomplete="on" required autofocus>
-        </p>
-        <p>
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="email" placeholder="your email" 
-            required>
-        </p>
-        <p>
-          <label for="message">Your Message:</label>
-          <br>
-          <textarea name="message" id="message" cols="30" rows="10" 
-            placeholder="Type your message here" required></textarea>
-        </p>
-      </fieldset>
-      <button type="submit" formaction="https://httpbin.org/post" 
-        formmethod="post">Submit</button>
-      <button type="reset">Reset</button>
-    </form>
-  </article>
+  <main>
+    <section>
+      <h2>Our Contact Form</h2>
+      <form action="https://httpbin.org/get" method="get">
+        <fieldset>
+          <legend>Send Us A Message</legend>
+          <p>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="your name" 
+              autocomplete="on" required>
+          </p>
+          <p>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="your email" 
+              required>
+          </p>
+          <p>
+            <label for="message">Your Message:</label>
+            <br>
+            <textarea name="message" id="message" cols="30" rows="10" 
+              placeholder="Type your message here" required></textarea>
+          </p>
+        </fieldset>
+        <!-- I wanted to make it POSt, because I think that's better -->
+        <button type="submit" formaction="https://httpbin.org/post"
+          formmethod="post">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
+    </section>
   
-  <h2>Our Location</h2>
-  <address>
-    555 Taco Temptation Lane, Suite T
-    <br>
-    Kansas City, MO 55555-5555
-  </address>
-  <p>
-    <em>Phone: </em><a href="tel:+15555555555">555-555-5555</a>
-  </p>
-  <p>
-    <a href="#top">Back to Top</a>
-  </p>
+    <section>
+      <h2>Our Location</h2>
+      <address>
+        555 Taco Temptation Lane, Suite T
+        <br>
+        Kansas City, MO 55555-5555
+        <br>
+        <br>
+        Phone: <a href="tel:+15555555555">555-555-5555</a>
+      </address>
+      <p>
+        <a href="#">Back to Top</a>
+      </p>
+    </section>
+  </main>
   <hr>
   
   <footer>
