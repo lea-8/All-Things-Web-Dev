@@ -16,19 +16,15 @@ const App = () => {
     return <pre>Loading...</pre>;
   }
 
-  return (
-    <svg width={width} height={height}>
-      {data.map((d) => (
-        <div
-          style={{
-            backgroundColor: d["RGB hex value"],
-            width: "950px",
-            height: "4px",
-          }}
-        />
-      ))}
-    </svg>
-  );
+  return data.map((d) => (
+    <div
+      style={{
+        backgroundColor: d["RGB hex value"],
+        width: "950px",
+        height: "4px",
+      }}
+    />
+  ));
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
