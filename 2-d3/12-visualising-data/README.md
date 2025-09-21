@@ -1,1 +1,1 @@
-A program that loads in some [data about CSS named colours](https://gist.github.com/lea-8/9b302aba8a848bfb7d7c424baede2522) using D3 utilities, and uses React to render the data.
+A program that loads in some [data about CSS named colours](https://gist.github.com/lea-8/9b302aba8a848bfb7d7c424baede2522) using D3 utilities, and uses React to render the data as a radial burst.
