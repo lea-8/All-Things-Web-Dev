@@ -1,6 +1,6 @@
 <script>
 	import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
-  // import { foo } from './foo.js'
+  // import { foo } from './foo';
   import markUpdate from './markUpdate';
 
   const action = markUpdate();
@@ -17,7 +17,7 @@
 	
 	afterUpdate(() => {
 		console.log('afterUpdate');
-    // count++;  // Don't do this.
+    // count++;  // Don't do this. (Potential infinite loop.)
 	});
 	
 	function update() {
