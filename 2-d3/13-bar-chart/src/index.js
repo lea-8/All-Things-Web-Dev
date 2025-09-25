@@ -6,9 +6,9 @@ import { csv, arc, scaleBand, scaleLinear, max } from "d3";
 const csvUrl =
   "https://gist.githubusercontent.com/lea-8/cdbf7b36665e5f22452126cf1eaf2c49/raw/f4ee0dad1f05858d9c614017956723c69d975505/UN_Population_2023.csv";
 
-const width = 500;
-const height = 300;
-const margin = { top: 20, right: 20, bottom: 20, left:20 };
+const width = 600;
+const height = 350;
+const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
 const pieArc = arc().innerRadius(0).outerRadius(width);
 
@@ -20,7 +20,7 @@ const App = () => {
       d.Population = +d["Total"]; // wth is this notation?
       return d;
     };
-    csv(csvUrl, row).then(data => {
+    csv(csvUrl, row).then((data) => {
       setData(data.slice(0, 10));
     });
   }, []);
@@ -45,15 +45,58 @@ const App = () => {
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
-        {data.map((d) => (
-          <rect 
-            x={0} 
-            y={yScale(d.Country)} 
-            width={xScale(d.Population)} 
-            height={yScale.bandwidth()}
-          />
+        {
+          // x-axis ticks
+          xScale.ticks().map((tickValue) => (
+            <g transform={`translate(${xScale(tickValue)}, 0)`}>
+              <line
+                // Don't need the below because of the transform translation.
+                // x1={xScale(tickValue)}
+                // y1={0}
+                // x2={xScale(tickValue)}
+                y2={innerHeight}
+                stroke="grey"
+              />
+              <text 
+                style={{ textAnchor: "middle" }} 
+                dy="1em" 
+                y={innerHeight}
+              >
+                {tickValue}
+              </text>
+            </g>
+          ))
+        }
+        {
+        // y-axis ticks
+        yScale.domain().map((tickValue) => (
+          <g transform={`translate(0, ${yScale(tickValue)})`}>
+            <line y2={innerHeight} stroke="grey" />
+            <text 
+              style={{ textAnchor: "middle" }} 
+              dy="1em" 
+              y={innerHeight}
+            >
+              {tickValue}
+            </text>
+          </g>
         ))}
-        </g>
+        {
+          // horizontal bars
+          data.map(
+            (
+              d // d is a row.
+            ) => (
+              <rect
+                x={0}
+                y={yScale(d.Country)}
+                width={xScale(d.Population)}
+                height={yScale.bandwidth()}
+              />
+            )
+          )
+        }
+      </g>
     </svg>
   );
 };
