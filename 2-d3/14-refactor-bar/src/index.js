@@ -6,7 +6,7 @@ import { AxisBottom } from './chart/AxisBottom';
 import { AxisLeft } from './chart/AxisLeft';
 import { Marks } from './chart/Marks';
 
-const width = 600;
+const width = 720;
 const height = 350;
 const margin = { top: 20, right: 20, bottom: 20, left: 200 };
 
