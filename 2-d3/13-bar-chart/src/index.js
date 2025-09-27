@@ -8,7 +8,7 @@ const csvUrl =
 
 const width = 600;
 const height = 350;
-const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+const margin = { top: 20, right: 20, bottom: 20, left: 200 };
 
 const pieArc = arc().innerRadius(0).outerRadius(width);
 
@@ -48,7 +48,7 @@ const App = () => {
         {
           // x-axis ticks
           xScale.ticks().map((tickValue) => (
-            <g transform={`translate(${xScale(tickValue)}, 0)`}>
+            <g key={tickValue} transform={`translate(${xScale(tickValue)}, 0)`}>
               <line
                 // Don't need the below because of the transform translation.
                 // x1={xScale(tickValue)}
@@ -57,30 +57,33 @@ const App = () => {
                 y2={innerHeight}
                 stroke="grey"
               />
-              <text 
-                style={{ textAnchor: "middle" }} 
-                dy="1em" 
-                y={innerHeight}
-              >
+              <text style={{ textAnchor: "middle" }} dy="1em" y={innerHeight}>
                 {tickValue}
               </text>
             </g>
           ))
         }
         {
-        // y-axis ticks
-        yScale.domain().map((tickValue) => (
-          <g transform={`translate(0, ${yScale(tickValue)})`}>
-            <line y2={innerHeight} stroke="grey" />
-            <text 
-              style={{ textAnchor: "middle" }} 
-              dy="1em" 
-              y={innerHeight}
-            >
+          // y-axis ticks
+          yScale.domain().map((tickValue) => (
+            // <g
+            //   transform={`translate(0, ${
+            //     // why doesn't using 'dy' only in the <text> elem work?
+            //     yScale(tickValue) + yScale.bandwidth() / 2
+            //   })`}
+            // >
+            <text
+              key={tickValue}
+              style={{ textAnchor: "end" }}
+              x={-3}
+              dy="0.5em"
+              y={yScale(tickValue) + yScale.bandwidth() / 2}
+            >                
               {tickValue}
             </text>
-          </g>
-        ))}
+            // </g>
+          ))
+        }
         {
           // horizontal bars
           data.map(
@@ -88,6 +91,7 @@ const App = () => {
               d // d is a row.
             ) => (
               <rect
+                key={d.Country}
                 x={0}
                 y={yScale(d.Country)}
                 width={xScale(d.Population)}
