@@ -9,7 +9,7 @@ export const useData = () => {
 
   useEffect(() => {
     const row = (d) => {
-      d.Population = +d["Total"]; // wth is this notation?
+      d.Population = +d["Total"] * 1000; // wth is this notation?
       return d;
     };
     csv(csvUrl, row).then((data) => {
