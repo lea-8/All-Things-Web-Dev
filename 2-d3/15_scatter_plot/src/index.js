@@ -1,17 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { arc, scaleBand, scaleLinear, max, format } from "d3";
-import { useData } from "./chart/useData";
-import { AxisBottom } from "./chart/AxisBottom";
-import { AxisLeft } from "./chart/AxisLeft";
-import { Marks } from "./chart/Marks";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  StrictMode
+} from 'react';
+import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
+import { csv, scaleLinear, max, format, extent } from 'd3';
+import { useData } from './chart/useData';
+import { AxisBottom } from './chart/AxisBottom';
+import { AxisLeft } from './chart/AxisLeft';
+import { Marks } from './chart/Marks';
 
-const width = 720;
-const height = 350;
-const margin = { top: 20, right: 30, bottom: 65, left: 200 };
-const xAxisLabelOffset = 45;
-
-const pieArc = arc().innerRadius(0).outerRadius(width);
+const width = 960;
+const height = 500;
+const margin = {
+  top: 20,
+  right: 30,
+  bottom: 65,
+  left: 90,
+};
+const xAxisLabelOffset = 50;
+const yAxisLabelOffset = 45;
 
 const App = () => {
   const data = useData();
@@ -20,42 +30,70 @@ const App = () => {
     return <pre>Loading...</pre>;
   }
 
-  console.log(data[0]);
-
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 
-  const yValue = (d) => d.Country;
-  const xValue = (d) => d.Population;
+  const xValue = (d) => d.petal_length;
+  const xAxisLabel = 'Petal Length';
+
+  const yValue = (d) => d.sepal_width;
+  const yAxisLabel = 'Sepal Width';
 
   const siFormat = format('.2s');
-  const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B');
+  const xAxisTickFormat = (tickValue) =>
+    siFormat(tickValue).replace('G', 'B');
 
-  const yScale = scaleBand()
-    .domain(data.map(yValue))
-    .range([0, innerHeight])
-    .paddingInner(0.15);
+  // This is how you might want to
+  // memoize the scale if you need to
+  // optimize performance.
+  // const xScale = useMemo(() => {
+  //   return scaleLinear()
+  //     .domain(extent(data, xValue))
+  //     .range([0, innerWidth])
+  //     .nice();
+  // }, [data, xValue, innerWidth]);
 
   const xScale = scaleLinear()
-    .domain([0, max(data, xValue)])
-    .range([0, innerWidth]);
+    .domain(extent(data, xValue))
+    .range([0, innerWidth])
+    .nice();
+
+  const yScale = scaleLinear()
+    .domain(extent(data, yValue))
+    .range([0, innerHeight]);
 
   return (
     <svg width={width} height={height}>
-      <g transform={`translate(${margin.left}, ${margin.top})`}>
-        <AxisBottom 
+      <g
+        transform={`translate(${margin.left},${margin.top})`}
+      >
+        <AxisBottom
           xScale={xScale}
           innerHeight={innerHeight}
           tickFormat={xAxisTickFormat}
+          tickOffset={5}
         />
-        <AxisLeft yScale={yScale} />
-        <text 
-          className="axis-label" 
-          x={innerWidth / 2} 
-          text-anchor="middle" 
-          y={innerHeight + xAxisLabelOffset}
+        <text
+          className="axis-label"
+          textAnchor="middle"
+          transform={`translate(${-yAxisLabelOffset},${
+            innerHeight / 2
+          }) rotate(-90)`}
         >
-          Population
+          {yAxisLabel}
+        </text>
+        <AxisLeft
+          yScale={yScale}
+          innerWidth={innerWidth}
+          tickOffset={5}
+        />
+        <text
+          className="axis-label"
+          x={innerWidth / 2}
+          y={innerHeight + xAxisLabelOffset}
+          textAnchor="middle"
+        >
+          {xAxisLabel}
         </text>
         <Marks
           data={data}
@@ -64,15 +102,18 @@ const App = () => {
           xValue={xValue}
           yValue={yValue}
           tooltipFormat={xAxisTickFormat}
+          circleRadius={7}
         />
       </g>
     </svg>
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
