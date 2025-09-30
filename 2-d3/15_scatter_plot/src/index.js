@@ -7,7 +7,7 @@ import { AxisBottom } from "./chart/AxisBottom";
 import { AxisLeft } from "./chart/AxisLeft";
 import { Marks } from "./chart/Marks";
 
-const width = 960;
+const width = 720;
 const height = 500;
 const margin = { top: 20, right: 30, bottom: 65, left: 110 };
 const xAxisLabelOffset = 50;
@@ -69,7 +69,7 @@ const App = () => {
         >
           {yAxisLabel}
         </text> */}
-        <AxisLeft yScale={yScale} />
+        <AxisLeft yScale={yScale} innerWidth={innerWidth} />
         <text
           className="axis-label"
           x={innerWidth / 2}

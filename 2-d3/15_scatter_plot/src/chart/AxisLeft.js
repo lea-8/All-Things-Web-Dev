@@ -1,8 +1,4 @@
-export const AxisLeft = ({
-  yScale,
-  innerWidth,
-  tickOffset = 3,
-}) => {
+export const AxisLeft = ({ yScale, innerWidth }) => {
   // This is how you might want to delegate
   // the axis rendering to D3.
   // const gRef = useRef();
@@ -12,17 +8,12 @@ export const AxisLeft = ({
   // },[yScale]);
 
   return yScale.ticks().map((tickValue) => (
-    <g
-      className="tick"
-      transform={`translate(0,${yScale(
-        tickValue
-      )})`}
-    >
+    <g className="tick" transform={`translate(0, ${yScale(tickValue)})`}>
       <line x2={innerWidth} />
       <text
         key={tickValue}
         style={{ textAnchor: 'end' }}
-        x={-tickOffset}
+        x={-3}
         dy=".32em"
         y={yScale(tickValue)}
       >
