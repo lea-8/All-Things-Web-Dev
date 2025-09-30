@@ -1,25 +1,15 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  StrictMode
-} from 'react';
-import ReactDOM from 'react-dom';
-import {createRoot} from 'react-dom/client';
-import { csv, scaleLinear, max, format, extent } from 'd3';
-import { useData } from './chart/useData';
-import { AxisBottom } from './chart/AxisBottom';
-import { AxisLeft } from './chart/AxisLeft';
-import { Marks } from './chart/Marks';
+import React, { useState, useCallback, useEffect, StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+import { csv, scaleLinear, max, format, extent } from "d3";
+import { useData } from "./chart/useData";
+import { AxisBottom } from "./chart/AxisBottom";
+import { AxisLeft } from "./chart/AxisLeft";
+import { Marks } from "./chart/Marks";
 
 const width = 960;
 const height = 500;
-const margin = {
-  top: 20,
-  right: 30,
-  bottom: 65,
-  left: 90,
-};
+const margin = { top: 20, right: 30, bottom: 65, left: 110 };
 const xAxisLabelOffset = 50;
 const yAxisLabelOffset = 45;
 
@@ -34,14 +24,13 @@ const App = () => {
   const innerWidth = width - margin.left - margin.right;
 
   const xValue = (d) => d.petal_length;
-  const xAxisLabel = 'Petal Length';
+  // const xAxisLabel = "Petal Length";
 
   const yValue = (d) => d.sepal_width;
-  const yAxisLabel = 'Sepal Width';
+  // const yAxisLabel = "Sepal Width";
 
-  const siFormat = format('.2s');
-  const xAxisTickFormat = (tickValue) =>
-    siFormat(tickValue).replace('G', 'B');
+  const siFormat = format(".2s");
+  const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "B");
 
   // This is how you might want to
   // memoize the scale if you need to
@@ -55,8 +44,8 @@ const App = () => {
 
   const xScale = scaleLinear()
     .domain(extent(data, xValue))
-    .range([0, innerWidth])
-    .nice();
+    .range([0, innerWidth]);
+    // .nice();
 
   const yScale = scaleLinear()
     .domain(extent(data, yValue))
@@ -64,16 +53,14 @@ const App = () => {
 
   return (
     <svg width={width} height={height}>
-      <g
-        transform={`translate(${margin.left},${margin.top})`}
-      >
+      <g transform={`translate(${margin.left},${margin.top})`}>
         <AxisBottom
           xScale={xScale}
           innerHeight={innerHeight}
           tickFormat={xAxisTickFormat}
-          tickOffset={5}
+          // tickOffset={5}
         />
-        <text
+        {/* <text
           className="axis-label"
           textAnchor="middle"
           transform={`translate(${-yAxisLabelOffset},${
@@ -81,19 +68,15 @@ const App = () => {
           }) rotate(-90)`}
         >
           {yAxisLabel}
-        </text>
-        <AxisLeft
-          yScale={yScale}
-          innerWidth={innerWidth}
-          tickOffset={5}
-        />
+        </text> */}
+        <AxisLeft yScale={yScale} />
         <text
           className="axis-label"
           x={innerWidth / 2}
           y={innerHeight + xAxisLabelOffset}
           textAnchor="middle"
         >
-          {xAxisLabel}
+          {/* {xAxisLabel} */}
         </text>
         <Marks
           data={data}
@@ -102,14 +85,14 @@ const App = () => {
           xValue={xValue}
           yValue={yValue}
           tooltipFormat={xAxisTickFormat}
-          circleRadius={7}
+          // circleRadius={7}
         />
       </g>
     </svg>
   );
 };
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
