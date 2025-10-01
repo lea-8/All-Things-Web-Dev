@@ -1,4 +1,8 @@
-export const AxisLeft = ({ yScale, innerWidth }) => {
+export const AxisLeft = ({
+  yScale,
+  innerWidth,
+  // tickOffset = 3,
+}) => {
   // This is how you might want to delegate
   // the axis rendering to D3.
   // const gRef = useRef();
@@ -8,14 +12,21 @@ export const AxisLeft = ({ yScale, innerWidth }) => {
   // },[yScale]);
 
   return yScale.ticks().map((tickValue) => (
-    <g className="tick" transform={`translate(0, ${yScale(tickValue)})`}>
+    <g
+      className="tick"
+      transform={`translate(0,${yScale(
+        tickValue
+      )})`}
+    >
       <line x2={innerWidth} />
       <text
         key={tickValue}
         style={{ textAnchor: 'end' }}
-        x={-3}
+        // x={-tickOffset}
         dy=".32em"
-        y={yScale(tickValue)}
+        // this causes the y tick labels to only appear every 
+        //  2 that they are supposed to.
+        // y={yScale(tickValue)} 
       >
         {tickValue}
       </text>
