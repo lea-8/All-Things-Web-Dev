@@ -2,7 +2,7 @@
   import Example1 from './Example1.svelte';
   import Example2 from './Example2.svelte';
 
-  let show = false;
+  let show = true;
 </script>
 
 <input bind:checked={show} type="checkbox" />
