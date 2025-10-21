@@ -7,7 +7,6 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* Here is one of many  CSS rules you will need... */
 #one {
     border-width: 5px;
     border-style: solid;
@@ -15,25 +14,63 @@ body {
     margin: 5px;
     padding: 5px;
     width: 25%;
-    position: sticky;
-    float: right;
-    top: 100%;
+    right: 0%;
+    bottom: 0%;
+    position: fixed;
+    z-index: -1;
 }
 
 #two {
     border-width: 5px;
     border-style: solid;
     border-color: rgb(55, 124, 34);
+    margin: 5px;
+    padding: 5px;
+    width: 25%;
+    right: 0%;
+    top: 0%;
+    position: fixed;
+    z-index: 1;
 }
 
 #three {
     border-width: 5px;
     border-style: solid;
     border-color: rgb(244, 167, 60);
+    margin: 5px;
+    padding: 5px;
+    width: 25%;
+    left: 0%;
+    top: 0%;
+    position: fixed;
+    z-index: 2;
 }
 
 #four {
     border-width: 5px;
     border-style: solid;
     border-color: rgb(255, 253, 85);
+    margin: 5px;
+    padding: 5px;
+    width: 25%;
+    left: 0%;
+    bottom: 0%;
+    position: fixed;
+}
+
+a {
+    outline-color: rgb(0, 43, 245);
+    color: white;
+    text-decoration: none;
+}
+
+#link {
+    text-align: center;
+    width: fit-content;
+    /* margin-left: 40%; */
+    /* margin-right: 40%; */
+    margin: 0 auto;
+    padding: 0px;
+    background-color: #2f418e;
+    
 }
