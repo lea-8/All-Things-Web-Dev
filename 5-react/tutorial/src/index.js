@@ -7,25 +7,31 @@ const firstBook = {
   title: 'Quicksilver (Deluxe Limited Edition)',
   img: './images/book1.jpg'
 };
+const secondBook = {
+  author: 'Nicholas Sparks',
+  title: 'Remain',
+  img: 'https://static01.nyt.com/bestsellers/images/9798217154043.jpg'
+};
 
-// Book list used: https://www.nytimes.com/books/best-sellers/
+// Book list used: https://www.nytimes.com/books/best-sellers/combined-print-and-e-book-fiction/
 
 const BookList = () => {
   return (
     <section className="booklist">
       <Book author={firstBook.author} title={firstBook.title} img={firstBook.img} />
-      {/* <Book author={author} title={title} img={img} /> */}
+      <Book author={secondBook.author} title={secondBook.title} img={secondBook.img} />
     </section>
   );
 };
 
 const Book = (props) => {
+  const {title, author, img} = props;
   console.log(props);
   return (
     <article className='book'>
-      <img src={props.img} alt={props.title} />
-      <h2>{props.title}</h2>
-      <h4>{props.author}</h4>
+      <img src={img} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author}</h4>
     </article>
   );
 };
