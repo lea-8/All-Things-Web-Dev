@@ -1,6 +1,9 @@
 import ReactDOM from "react-dom/client";
 
 import "./index.css";
+const author = 'Callie Hart';
+const title = 'Quicksilver (Deluxe Limited Edition)';
+const img = './images/book1.jpg';
 
 // Book list used: https://www.nytimes.com/books/best-sellers/
 
@@ -17,28 +20,20 @@ const BookList = () => {
 
 const Book = () => {
   return (
-    <article className="book">
+    <article className='book'>
       {/* <Image />
       <Title />
       <Author /> */}
-      <img src="./images/book1.jpg" alt="Quicksilver (Deluxe Limited Edition)" />
-      <h2>Quicksilver (Deluxe Limited Edition)</h2>
-      <h4>Callie Hart</h4>
+      <img src={img} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author}</h4>
+      {/* Statement won 't cut it
+      <p>{let x = 6}</p>
+      But expresseion will
+      <p>{6 + 6}</p> */}
     </article>
   );
 };
-
-// const Image = () => (
-// );
-// const Title = () => ;
-// const Author = () => {
-//   const inlineHeadingStyles = {
-//     color: "#617d98",
-//     fontSize: "0.75rem",
-//     marginTop: "0.5rem",
-//   };
-//   return
-// };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
