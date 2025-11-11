@@ -13,7 +13,15 @@ const PORT = process.env.PORT || 3500;
 
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method);
+
+  const extension = path.extname(req.url);
+
+  let contentType;
+  
 });
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 /* myEmitter.on('log', (msg) => logEvents(msg));
 
