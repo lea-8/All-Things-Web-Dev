@@ -16,6 +16,8 @@ if (fs.existsSync('./new')) {
 }
 
 // --- To get results like tut: ---
+//  Not exactly sure why the above doesn't work this way.
+//  Looks exactly like what instructor has.
 /* const fs = require('fs');
 
 console.log('before', fs.existsSync('./new'));
